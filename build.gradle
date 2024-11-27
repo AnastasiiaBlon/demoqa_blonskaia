@@ -6,6 +6,12 @@ repositories {
     mavenCentral()
 }
 
+sourceSets {
+    test {
+        resources.srcDir 'src/test/java/resources'
+    }
+}
+
 dependencies {
     testImplementation (
             "com.codeborne:selenide:6.19.1",
