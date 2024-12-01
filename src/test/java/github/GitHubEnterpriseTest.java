@@ -25,7 +25,5 @@ public class GitHubEnterpriseTest {
         $(byTagAndText("a", "Enterprises")).click();
         $("#hero-section-brand-heading").shouldHave(text("The AI-powered developer platform"));
         sleep(5000);
-
-
     }
 }
