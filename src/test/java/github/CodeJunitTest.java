@@ -5,19 +5,20 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class codeJunit {
+public class CodeJunitTest {
 
     @BeforeAll
-    static void beforeTestsStart() {
+    static void browserSetUp() {
         Configuration.browserSize = "1928x1080";
         Configuration.baseUrl = "https://github.com/";
         Configuration.pageLoadStrategy = "eager";
     }
 
     @Test
-    void codeJUnit5() {
+    void codeOnJUnitPageTest() {
         // open Selenide page in github
         open("/selenide/selenide");
         $("#repository-container-header").shouldHave(text("selenide / selenide"));
@@ -30,10 +31,10 @@ public class codeJunit {
         $("#wiki-body").shouldHave(text("Soft assertions"));
 
         // open SoftAssertions page
-        $("#wiki-body > div.markdown-body > ul:nth-child(3) > li:nth-child(8) > a").click();
+        $("#wiki-body").$(byText("Soft assertions")).click();
 
         // check: there is code example for JUnit5
-        $("#wiki-body > div.markdown-body > div:nth-child(19) > pre").shouldHave(text(
+        $("#wiki-body").shouldHave(text(
                 "@ExtendWith({SoftAssertsExtension.class})\n" +
                         "class Tests {\n" +
                         "  @Test\n" +

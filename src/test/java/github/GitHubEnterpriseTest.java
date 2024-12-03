@@ -12,14 +12,14 @@ import static com.codeborne.selenide.Selenide.*;
 public class GitHubEnterpriseTest {
 
     @BeforeAll
-    static void beforeTestsStart() {
+    static void browserSetUp() {
         Configuration.browserSize = "1928x1080";
         Configuration.pageLoadStrategy = "eager";
         Configuration.baseUrl = "https://github.com";
     }
 
     @Test
-    void enterpriseText() {
+    void enterpriseTextTest() {
         open("/");
         $(".HeaderMenu-nav").$(byText("Solutions")).hover();
         $(byTagAndText("a", "Enterprises")).click();
