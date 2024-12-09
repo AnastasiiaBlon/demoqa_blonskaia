@@ -47,4 +47,34 @@ public class AutomationPracticeFormsPageObjectTest extends BrowserTestConfig {
                 .resultTablePairs("Address", "USA")
                 .resultTablePairs("State and City", "Uttar Pradesh Lucknow");
         }
+
+    @Test
+    void requiredFieldsFillTest() {
+        registrationPage.openPage()
+                .setFirstName("John")
+                .setLastName("Doe")
+                .setEmail("johnDoe@gmail.com")
+                .setGender("Female")
+                .setNumber("8900000000")
+                .submit();
+
+        registrationPage
+                .submissionSuccess()
+                .submissionModalWindowMessage("Thanks for submitting the form");
+
+        registrationPage
+                .resultTablePairs("Student Name", "John Doe")
+                .resultTablePairs("Student Email", "johnDoe@gmail.com")
+                .resultTablePairs("Gender", "Female")
+                .resultTablePairs("Mobile", "8900000000");
+    }
+
+    @Test
+    void emptyFieldsSubmissionTest() {
+        registrationPage.openPage()
+                .submit();
+
+        registrationPage
+                .submissionFail();
+    }
 }
