@@ -138,7 +138,7 @@ public class RegistrationPage {
     }
 
     public RegistrationPage resultTablePairs(String key, String value) {
-        tableComponent.getCellValueByKey(key, value);
+        tableComponent.checkTableValue(key, value);
 
         return this;
     }
