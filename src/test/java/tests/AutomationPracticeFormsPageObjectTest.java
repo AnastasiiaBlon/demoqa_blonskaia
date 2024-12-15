@@ -25,7 +25,7 @@ public class AutomationPracticeFormsPageObjectTest extends BrowserTestConfig {
 
         registrationPage
                 .submissionSuccess()
-                .submissionModalWindowMessage("Thanks for submitting the form");
+                .submissionModalWindowMessage();
 
         registrationPage
                 .resultTablePairs("Student Name", "John Doe")
@@ -52,7 +52,7 @@ public class AutomationPracticeFormsPageObjectTest extends BrowserTestConfig {
 
         registrationPage
                 .submissionSuccess()
-                .submissionModalWindowMessage("Thanks for submitting the form");
+                .submissionModalWindowMessage();
 
         registrationPage
                 .resultTablePairs("Student Name", "John Doe")

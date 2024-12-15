@@ -31,6 +31,8 @@ public class RegistrationPage {
     TableComponent tableComponent = new TableComponent();
     ModalComponent modalComponent = new ModalComponent();
 
+    private final static String confirmationPageTitle = "Thanks for submitting the form";
+
     public RegistrationPage openPage() {
         open("/automation-practice-form");
         $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
@@ -40,32 +42,32 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setFirstName(String value) {
-        firstNameInput.setValue(value);
+    public RegistrationPage setFirstName(String firstNameUser) {
+        firstNameInput.setValue(firstNameUser);
 
         return this;
     }
 
-    public RegistrationPage setLastName(String value) {
-        lastNameInput.setValue(value);
+    public RegistrationPage setLastName(String lastNameUser) {
+        lastNameInput.setValue(lastNameUser);
 
         return this;
     }
 
-    public RegistrationPage setEmail(String value) {
-        userEmailInput.setValue(value);
+    public RegistrationPage setEmail(String email) {
+        userEmailInput.setValue(email);
 
         return this;
     }
 
-    public RegistrationPage setGender(String value) {
-        genderWrapper.$(byText(value)).click();
+    public RegistrationPage setGender(String gender) {
+        genderWrapper.$(byText(gender)).click();
 
         return this;
     }
 
-    public RegistrationPage setNumber(String value) {
-        userNumberInput.setValue(value);
+    public RegistrationPage setNumber(String phone) {
+        userNumberInput.setValue(phone);
 
         return this;
     }
@@ -131,8 +133,8 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage submissionModalWindowMessage(String value) {
-        modalComponent.getTitle(value);
+    public RegistrationPage submissionModalWindowMessage() {
+        modalComponent.getTitle(confirmationPageTitle);
 
         return this;
     }
