@@ -4,6 +4,7 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
@@ -26,6 +27,7 @@ public class RegistrationRemoteTests {
     }
 
     @Test
+    @Tag("demoqa")
     void fillFormTest() {
         step("Open form", () -> {
             open("/automation-practice-form");
