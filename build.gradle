@@ -53,8 +53,8 @@ tasks.withType(Test) {
 //            exceptionFormat "short"
 //        }
 //    }
-//}
-//
+}
+
 //task simple_test(type: Test) {
 //    useJUnitPlatform {
 //        includeTags("simple")
