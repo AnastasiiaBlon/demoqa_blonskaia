@@ -141,32 +141,64 @@ public class AutomationFormsPageObjectFakeTest extends BrowserTestConfig {
     @Test
     @Tag("demoqa")
     void requiredFieldsFillTest() {
-        registrationPage.openPage()
-                .setFirstName(firstNameUser)
-                .setLastName(lastNameUser)
-                .setEmail(email)
-                .setGender(gender)
-                .setNumber(phone)
-                .submit();
+        step("Open form", () -> {
+            registrationPage.openPage();
+        });
 
-        registrationPage
-                .submissionSuccess()
-                .submissionModalWindowMessage();
+        step("Fill in first name field", () -> {
+            registrationPage.setFirstName(firstNameUser);
+        });
 
-        registrationPage
-                .resultTablePairs("Student Name", firstNameUser + " " + lastNameUser)
-                .resultTablePairs("Student Email", email)
-                .resultTablePairs("Gender", gender)
-                .resultTablePairs("Mobile", phone);
+        step("Fill in last name field", () -> {
+            registrationPage.setLastName(lastNameUser);
+        });
+
+        step("Fill in email field", () -> {
+            registrationPage.setEmail(email);
+        });
+
+        step("Select gender", () -> {
+            registrationPage.setGender(gender);
+        });
+
+        step("Fill in phone number field", () -> {
+            registrationPage.setNumber(phone);
+        });
+
+        step("Submit filled in form", () -> {
+            registrationPage.submit();
+        });
+
+        step("Success window is shown", () -> {
+            registrationPage.submissionSuccess();
+        });
+
+        step("Success message is shown", () -> {
+            registrationPage.submissionModalWindowMessage();
+        });
+
+        step("Data is matched with data in fields of registration form", () -> {
+            registrationPage
+                    .resultTablePairs(confirmPageFullStudentName, firstNameUser + " " + lastNameUser)
+                    .resultTablePairs(confirmPageStudentEmail, email)
+                    .resultTablePairs(confirmPageStudentGender, gender)
+                    .resultTablePairs(confirmPageStudentPhone, phone);
+        });
     }
 
     @Test
     @Tag("demoqa")
     void emptyFieldsSubmissionTest() {
-        registrationPage.openPage()
-                .submit();
+            step("Open form", () -> {
+                registrationPage.openPage();
+            });
 
-        registrationPage
-                .submissionFail();
+        step("Submit filled in form", () -> {
+            registrationPage.submit();
+        });
+
+        step("No registration form shown", () -> {
+            registrationPage.submissionFail();
+        });
     }
 }
