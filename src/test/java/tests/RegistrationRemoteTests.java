@@ -77,6 +77,7 @@ public class RegistrationRemoteTests {
             $("#react-select-4-input").setValue("Lucknow").pressEnter();
             $("#submit").click();
                 });
+
         step("Verify results", () -> {
             $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
             $(".table").$(byText("Student Name")).sibling(0).shouldHave(text("John Doe"));
