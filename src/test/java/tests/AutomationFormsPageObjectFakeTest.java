@@ -1,9 +1,12 @@
 package tests;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 import utils.RandomTestData;
+
+import static io.qameta.allure.Allure.step;
 
 public class AutomationFormsPageObjectFakeTest extends BrowserTestConfig {
     private String
@@ -54,40 +57,89 @@ public class AutomationFormsPageObjectFakeTest extends BrowserTestConfig {
     }
 
     @Test
+    @Tag("demoqa")
     void fillFormTest() {
-        registrationPage.openPage()
-                .setFirstName(firstNameUser)
-                .setLastName(lastNameUser)
-                .setEmail(email)
-                .setGender(gender)
-                .setNumber(phone)
-                .setDateOfBirth(dayOfBirth, monthOfBirth, yearOfBirth)
-                .setSubjects(subjectOne)
-                .setHobbies(hobby)
-                .setImage(picture)
-                .setAddress(street)
-                .setState(state)
-                .setCity(city)
-                .submit();
+        step("Open form", () -> {
+            registrationPage.openPage();
+        });
 
-        registrationPage
-                .submissionSuccess()
-                .submissionModalWindowMessage();
+        step("Fill in first name field", () -> {
+            registrationPage.setFirstName(firstNameUser);
+        });
 
-        registrationPage
-                .resultTablePairs(confirmPageFullStudentName, firstNameUser + " " + lastNameUser)
-                .resultTablePairs(confirmPageStudentEmail, email)
-                .resultTablePairs(confirmPageStudentGender, gender)
-                .resultTablePairs(confirmPageStudentPhone, phone)
-                .resultTablePairs(confirmPageStudentBirthday, dayOfBirth + " " + monthOfBirth + "," + yearOfBirth)
-                .resultTablePairs(confirmPageStudentSubject, subjectOne)
-                .resultTablePairs(confirmPageStudentHobby, hobby)
-                .resultTablePairs(confirmPageStudentPicture, picture)
-                .resultTablePairs(confirmPageStudentAddress, street)
-                .resultTablePairs(confirmPageStudentStateAndCity, state + " " + city);
+        step("Fill in last name field", () -> {
+            registrationPage.setLastName(lastNameUser);
+        });
+
+        step("Fill in email field", () -> {
+            registrationPage.setEmail(email);
+        });
+
+        step("Select gender", () -> {
+            registrationPage.setGender(gender);
+        });
+
+        step("Fill in phone number field", () -> {
+            registrationPage.setNumber(phone);
+        });
+
+        step("Select date of birth", () -> {
+            registrationPage.setDateOfBirth(dayOfBirth, monthOfBirth, yearOfBirth);
+        });
+
+        step("Select subjects", () -> {
+            registrationPage.setSubjects(subjectOne);
+        });
+
+        step("Select hobbies", () -> {
+            registrationPage.setHobbies(hobby);
+        });
+
+        step("Set image", () -> {
+            registrationPage.setImage(picture);
+        });
+
+        step("Set address", () -> {
+            registrationPage.setAddress(street);
+        });
+
+        step("Set state", () -> {
+            registrationPage.setState(state);
+        });
+
+        step("Set city", () -> {
+            registrationPage.setCity(city);
+        });
+
+        step("Submit filled in form", () -> {
+            registrationPage.submit();
+        });
+
+        step("Success window is shown", () -> {
+            registrationPage.submissionSuccess();
+        });
+
+        step("Success message is shown", () -> {
+            registrationPage.submissionModalWindowMessage();
+        });
+
+        step("Data is matched with data in fields of registration form", () -> {
+            registrationPage
+                    .resultTablePairs(confirmPageFullStudentName, firstNameUser + " " + lastNameUser)
+                    .resultTablePairs(confirmPageStudentEmail, email)
+                    .resultTablePairs(confirmPageStudentGender, gender)
+                    .resultTablePairs(confirmPageStudentPhone, phone)
+                    .resultTablePairs(confirmPageStudentBirthday, dayOfBirth + " " + monthOfBirth + "," + yearOfBirth)
+                    .resultTablePairs(confirmPageStudentSubject, subjectOne)
+                    .resultTablePairs(confirmPageStudentHobby, hobby)
+                    .resultTablePairs(confirmPageStudentPicture, picture)
+                    .resultTablePairs(confirmPageStudentAddress, street)
+                    .resultTablePairs(confirmPageStudentStateAndCity, state + " " + city);
+        });
         }
 
     @Test
+    @Tag("demoqa")
     void requiredFieldsFillTest() {
         registrationPage.openPage()
                 .setFirstName(firstNameUser)
@@ -109,6 +161,7 @@ public class AutomationFormsPageObjectFakeTest extends BrowserTestConfig {
     }
 
     @Test
+    @Tag("demoqa")
     void emptyFieldsSubmissionTest() {
         registrationPage.openPage()
                 .submit();
