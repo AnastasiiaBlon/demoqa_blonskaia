@@ -40,13 +40,14 @@ public class BrowserTestConfig {
     }
 
     @AfterEach
-    void addAttachments() {
+    void addAttachmentsAndCloseBrowser() {
         Attach.screenshotAs("Last screenshot");
         Attach.addVideo();
         if (!System.getProperty("browser").equalsIgnoreCase("firefox")) {
             Attach.pageSource();
             Attach.browserConsoleLogs();
         }
+        closeWebDriver();
     }
 
     @AfterAll
